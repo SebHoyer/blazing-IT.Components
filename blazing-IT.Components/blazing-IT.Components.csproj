@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>blazing-IT.Components</PackageId>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>blazing_IT.Components</RootNamespace>
+    <Authors>Sebastian Hoyer</Authors>
+    <Company>blazing-IT</Company>
+  </PropertyGroup>
+
+</Project>
