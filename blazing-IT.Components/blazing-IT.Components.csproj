@@ -1,18 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <PackageId>blazing-IT.Components</PackageId>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>blazing-IT.Components</PackageId>
     <RootNamespace>blazing_IT.Components</RootNamespace>
     <Authors>Sebastian Hoyer</Authors>
     <Company>blazing-IT</Company>
-    <PackageTags></PackageTags>
+    <PackageTags>Blazor, ASP.NET Core, Components</PackageTags>
     <RepositoryUrl>https://github.com/SebHoyer/blazing-IT.Components</RepositoryUrl>
-    <Description>Shares Classes and Components which are used by the other blazing-IT.Components.*packages</Description>
-    <AssemblyVersion>0.9.0.3</AssemblyVersion>
-    <FileVersion>0.9.0.3</FileVersion>
+    <Description>Shared classes and components which are used by the other blazing-IT.Components.* packages</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.9.0.3</Version>
+    <Version>1.0.0.3</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.1" />
+  </ItemGroup>
 
 </Project>
