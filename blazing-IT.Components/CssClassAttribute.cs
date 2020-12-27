@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace blazing_IT.Components
 {
     /// <summary>
-    /// This attribute can be used in enums to man an enum into CSS classes. 
+    /// This attribute can be used in enums to map enum-values into CSS classes. 
     /// These enums are usefull to pass them as parameter into Razor Components.
     /// </summary>
     /// <example>
     /// https://github.com/SebHoyer/blazing-IT.Components.FontAwesome/blob/master/blazing-IT.Components.FontAwesome/FaIconSize.cs
     /// </example>
-    [AttributeUsage(AttributeTargets.Enum)]
+    [AttributeUsage(AttributeTargets.Field)]
     public class CssClassAttribute : Attribute
     {
         private string _cssClassName;
@@ -45,13 +45,22 @@ namespace blazing_IT.Components
         {
             Type enumValueType = enumValue.GetType();
             Type cssClassAttributeType = typeof(CssClassAttribute);
+            string enumValueString = enumValue.ToString();
 
-            FieldInfo enumValueFieldInfo = enumValueType.GetField(enumValue.ToString());
+            FieldInfo enumValueFieldInfo = enumValueType.GetField(enumValueString);
             CssClassAttribute[] enumValueAttributes = enumValueFieldInfo.GetCustomAttributes(cssClassAttributeType) as CssClassAttribute[];
 
             string cssClassName = string.Empty;
-            if (enumValueAttributes.Length > 0)
+
+            // Check if the enum-value is decorated with the CssClassAttribute
+            if (enumValueAttributes.Length == 0)
             {
+                // No decoration
+                throw new Exception($"Enum '{enumValueType.Name.ToString()}' Value: '{enumValue.ToString()}' is not decorated with the CssClassAttribute");
+            }
+            else 
+            {
+                // Attribute found
                 cssClassName = enumValueAttributes[0].CssClassName;
             }
 
