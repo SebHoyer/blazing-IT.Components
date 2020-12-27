@@ -28,6 +28,7 @@ namespace blazing_IT.Components
 
         /// <summary>
         /// Constructor
+        /// Assigns a CSS class name as string to an enum-value
         /// </summary>
         /// <param name="cssClassName">The name of the CSS class, the enum-value gets mapped into.</param>
         public CssClassAttribute(string cssClassName)
@@ -37,10 +38,13 @@ namespace blazing_IT.Components
 
         /// <summary>
         /// Resolves the CSS class from a given enum-value.
-        /// The enum has to be decorated with the CssClassAttribute
+        /// The enum-values have to be decorated with the CssClassAttribute
         /// </summary>
         /// <param name="enumValue">The enum-value to resolve</param>
-        /// <returns></returns>
+        /// <returns>CSS class name as string</returns>
+        /// <exception cref="System.Exception">
+        /// An exception gets thrown if one trys to get the css class if the enum-value is not decorated with the CssClassAttribute
+        /// </exception>
         public static string GetCssClass(Enum enumValue)
         {
             Type enumValueType = enumValue.GetType();
@@ -55,7 +59,7 @@ namespace blazing_IT.Components
             // Check if the enum-value is decorated with the CssClassAttribute
             if (enumValueAttributes.Length == 0)
             {
-                // No decoration
+                // No decoration found
                 throw new Exception($"Enum '{enumValueType.Name.ToString()}' Value: '{enumValue.ToString()}' is not decorated with the CssClassAttribute");
             }
             else 
